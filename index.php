@@ -1,5 +1,5 @@
 <?php
-require("toro.php");
+require("Toro.php");
 
 class PasswordIndexHandler {
     function get() {
