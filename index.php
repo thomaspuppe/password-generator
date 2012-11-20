@@ -11,24 +11,32 @@ class PasswordHandler {
 		if ($numberOfCharacters==null) {
 			$numberOfCharacters = DEFAULT_LENGTH;
 		}
+		
+		$numberOfCharacters = intval($numberOfCharacters);
+		if ($numberOfCharacters<4) {
+			$numberOfCharacters = 4;
+		}
+		if ($numberOfCharacters>32) {
+			$numberOfCharacters = 32;
+		}
 	
 		$passwordGenerator = new PasswordGenerator($numberOfCharacters);
 		
-		echo '<div style="min-width:200px;float:left;">';
+		echo '<div style="min-width:400px;float:left;">';
 		$passwords = $passwordGenerator->getArrayOfComplicatedPasswords(NUMBER_OF_PASSWORDS);
 		foreach($passwords as $password) {
 			echo $password . '<br>';
 		}
 		echo '</div>';
 		
-		echo '<div style="min-width:200px;float:left;">';
+		echo '<div style="min-width:400px;float:left;">';
 		$passwords = $passwordGenerator->getArrayOfAlphanumericalPasswords(NUMBER_OF_PASSWORDS);
 		foreach($passwords as $password) {
 			echo $password . '<br>';
 		}
 		echo '</div>';
 		
-		echo '<div style="min-width:200px;float:left;">';
+		echo '<div style="min-width:400px;float:left;">';
 		$passwords = $passwordGenerator->getArrayOfMnemonicPasswords(NUMBER_OF_PASSWORDS);
 		foreach($passwords as $password) {
 			echo $password . '<br>';
@@ -41,8 +49,19 @@ class PasswordHandler {
     }
 }
 
+ToroHook::add("before_handler", function() {
+	echo '<html><header><title>generate secure passwords easily</title></header><body>
+		<h2>I need a password.</h2>
+		<h1>You`re welcome.</h1>
+		<p>bla blubb</p>
+	
+	</body>';
+});
+
 Toro::serve(array(
+	"" => "PasswordHandler",
     "/" => "PasswordHandler",
 	"/:number/" => "PasswordHandler",
 	"/:number" => "PasswordHandler"
 ));
+
