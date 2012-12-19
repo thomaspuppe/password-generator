@@ -144,6 +144,7 @@ ToroHook::add("before_handler", function() {
 				
 				}
 			</style>
+			<script>var _gaq = [["_setAccount", "UA-37165632-1"], ["_gat._anonymizeIp"], ["_trackPageview"], ["_setSiteSpeedSampleRate", 100]];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src="//www.google-analytics.com/ga.js";s.parentNode.insertBefore(g,s)}(document,"script"))</script>
 		</header><body>
 		<!--ul class="ruler">'.$ticks.'</ul-->
 
