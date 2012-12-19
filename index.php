@@ -25,26 +25,29 @@ class PasswordHandler {
 	
 		$passwordGenerator = new PasswordGenerator($numberOfCharacters);
 		
-		echo '<div style="min-width:400px;float:left;">';
+		echo '<div class="pw">';
+		echo '<h3>With Special characters</h3><p class="pw">';
 		$passwords = $passwordGenerator->getArrayOfComplicatedPasswords(NUMBER_OF_PASSWORDS);
 		foreach($passwords as $password) {
 			echo $password . '<br>';
 		}
-		echo '</div>';
+		echo '</p></div>';
 		
-		echo '<div style="min-width:400px;float:left;">';
+		echo '<div class="pw">';
+		echo '<h3>Characters and numbers</h3><p class="pw">';
 		$passwords = $passwordGenerator->getArrayOfAlphanumericalPasswords(NUMBER_OF_PASSWORDS);
 		foreach($passwords as $password) {
 			echo $password . '<br>';
 		}
-		echo '</div>';
+		echo '</p></div>';
 		
-		echo '<div style="min-width:400px;float:left;">';
+		echo '<div class="pw">';
+		echo '<h3>Easy to remember (up to 10 chars)</h3><p class="pw">';
 		$passwords = $passwordGenerator->getArrayOfMnemonicPasswords(NUMBER_OF_PASSWORDS);
 		foreach($passwords as $password) {
 			echo $password . '<br>';
 		}
-		echo '</div>';
+		echo '</p></div>';
 		
 		
 		
@@ -53,10 +56,100 @@ class PasswordHandler {
 }
 
 ToroHook::add("before_handler", function() {
-	echo '<html><header><title>generate secure passwords easily</title></header><body>
-		<h2>I need a password.</h2>
-		<h1>You`re welcome.</h1>
-		<p>bla blubb</p>
+
+	$ticks = '';
+	for ($i=4;$i<=32;$i++) {
+		$ticks.= '<li><a href="/'.$i.'/">'.$i.'</a></li>';
+	}
+
+	echo '<html><header><title>Password Maker: Generate Secure Passwords Easily. Long passwords, Unambiguous passwords, Mnemonic passwords.</title>
+			<style type="text/css">
+				body {
+					margin-top: 20px;
+					font-family: Helvetica, Arial, sans-serif;
+					font-size: 15px;
+					line-height: 24px;
+				}
+				.ruler, .ruler li {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+					display: inline-block;
+				}
+				/* IE6-7 Fix */
+				.ruler, .ruler li {
+					*display: inline;
+				}
+				.ruler {
+					background: lightYellow;
+					box-shadow: 0 -1px 1em hsl(60, 60%, 84%) inset;
+					border-radius: 2px;
+					border: 1px solid #ccc;
+					color: #ccc;
+					margin: 0;
+					height: 2.2em;
+					padding-right: 1cm;
+					white-space: nowrap;
+				}
+				.ruler a {
+				display: block;
+					padding-left: 37px;
+					width: 1.5em;
+					margin: .64em -1em -.64em;
+					text-align: center;
+					position: relative;
+					text-shadow: 1px 1px hsl(60, 60%, 84%);
+					cursor: pointer;
+				}
+				.ruler a:before {
+					content: \'\';
+					position: absolute;
+					border-left: 1px solid #ccc;
+					height: .5em;
+					top: -.64em;
+					right: 0.7em;
+				}
+				.ruler li.a {
+					font-weight; bold;
+				}
+				.ruler a {
+					color: #ccc;
+					text-decoration: none;
+				}
+				.ruler a:hover {
+					text-decoration: underline;
+				}
+				h1 {
+					font-family: Georgia, serif;
+					font-style: italic;
+					font-size: 1.5em;
+					width: 900px;
+				}
+				h1 span.q {
+					color: grey;
+				}
+				p.intro {
+					width: 900px;
+				}
+				div.pw {
+					min-width: 400px;
+					float: left;
+				}
+				h3 {
+					font-family: Georgia, serif;
+					font-size: 15px;
+					
+				}
+				div.pw p.pw {
+				
+				}
+			</style>
+		</header><body>
+		<!--ul class="ruler">'.$ticks.'</ul-->
+
+		<h1><span class="q">&ldquo;I need a password!&rdquo;</span> &mdash; You`re welcome! I just generated some for you.</h1>
+		
+		<p class="intro">ineedapassword.com generates passwords for you. No form filling, no settings. Just 25 of each type. You can even use them for writing down and printing, there are no ambiguois characters like Zero and Oh or lowercase L and uppercase i. You can choose the length of your password via the ruler above and save the URL as a bookmark. Like this: <a href="http://ineedapassword.com/12/">http://ineedapassword.com/12/</a></p>
 	
 	</body>';
 });
