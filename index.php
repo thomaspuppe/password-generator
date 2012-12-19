@@ -6,7 +6,7 @@ require("Toro.php");
 require("PasswordGenerator.php");
 
 define('DEFAULT_LENGTH', 16);
-define('NUMBER_OF_PASSWORDS', 50);
+define('NUMBER_OF_PASSWORDS', 25);
 
 class PasswordHandler {
     function get($numberOfCharacters=null) {
@@ -149,7 +149,7 @@ ToroHook::add("before_handler", function() {
 
 		<h1><span class="q">&ldquo;I need a password!&rdquo;</span> &mdash; You`re welcome! I just generated some for you.</h1>
 		
-		<p class="intro">ineedapassword.com generates passwords for you. No form filling, no settings. Just 25 of each type. You can even use them for writing down and printing, there are no ambiguois characters like Zero and Oh or lowercase L and uppercase i. You can choose the length of your password via the ruler above and save the URL as a bookmark. Like this: <a href="http://ineedapassword.com/12/">http://ineedapassword.com/12/</a></p>
+		<p class="intro"><strong>ineedapassword.com generates passwords for you. No form filling, no settings.</strong> Just 25 of each type. You can even use them for writing down and printing, there are <strong>no ambiguois characters</strong> like Zero and Oh or lowercase L and uppercase i. You can choose the length of your password via the URL and save it as a bookmark. Like this: <a href="http://ineedapassword.com/16/">http://ineedapassword.com/16/</a></p>
 	
 	</body>';
 });
