@@ -69,10 +69,15 @@ class PasswordGenerator {
 		$vocalsPoolLengthMinusOne = count($this->POOL_OF_VOCALS)-1;
 		$consonantsPoolLengthMinusOne = count($this->POOL_OF_VOCALS)-1;
 		
+		$mnemonicPasswordLength = $this->passwordLength;
+		if ($mnemonicPasswordLength>8) {
+			$mnemonicPasswordLength = 8;
+		}
+		
 		for($i=0; $i<$numberOfPasswords; $i++) {
 			$password = '';
-			for($j=0; $j<$this->passwordLength; $j++) {
-				if ($j%2==0) {
+			for($j=0; $j<$mnemonicPasswordLength; $j++) {
+				if ($j%2!=0) {
 					$password.= $this->POOL_OF_VOCALS[mt_rand(0, $vocalsPoolLengthMinusOne)];
 				} else {
 					$password.= $this->POOL_OF_CONSONANTS[mt_rand(0, $consonantsPoolLengthMinusOne)];
